@@ -1,9 +1,26 @@
 class EventsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_event, only: %i[ show edit update destroy ]
+
+  def landingpage
+    @now = Time.now
+  end
 
   # GET /events or /events.json
   def index
     @events = Event.all
+  end
+
+  def search
+    @events = Event.all
+
+    if params[:name]
+      @events = @events.select { |event| event.name == params[:name] }
+    end
+
+    @events = @events.sort { |a, b| a.begins_at <=> b.begins_at }
+
+    render :index
   end
 
   # GET /events/1 or /events/1.json
@@ -64,6 +81,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :date)
+      params.require(:event).permit(:name, :begins_at, :ends_at)
     end
 end
