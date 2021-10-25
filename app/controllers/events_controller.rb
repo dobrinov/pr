@@ -2,6 +2,10 @@ class EventsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_event, only: %i[ show edit update destroy ]
 
+  def landingpage
+    @now = Time.now
+  end
+
   # GET /events or /events.json
   def index
     @events = Event.all
