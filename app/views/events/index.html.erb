@@ -6,7 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Date</th>
+      <th>Begins at</th>
+      <th>Ends at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.name %></td>
-        <td><%= event.date %></td>
+        <td><%= "#{event.begins_at.day}.#{event.begins_at.month}.#{event.begins_at.year} #{event.begins_at.hour}:#{event.begins_at.min}:#{event.begins_at.sec}" %></td>
+        <td><%= "#{event.ends_at.day}.#{event.ends_at.month}.#{event.ends_at.year} #{event.ends_at.hour}:#{event.ends_at.min}:#{event.ends_at.sec}" %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

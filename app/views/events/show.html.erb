@@ -6,8 +6,13 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @event.date %>
+  <strong>Begins at:</strong>
+  <%= @event.begins_at %>
+</p>
+
+<p>
+  <strong>Ends at:</strong>
+  <%= @event.ends_at %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
